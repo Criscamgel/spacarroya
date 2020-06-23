@@ -813,6 +813,18 @@ button{
 .mat-form-field-required-marker {
     color: $color-rojo;
 }
-  
+
+.checkbox{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    @include tablet(){
+        grid-template-columns: auto auto;
+    }
+    div{
+        align-self: center;
+        justify-self: center;
+    }
+}
 
 

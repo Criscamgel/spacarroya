@@ -21,6 +21,8 @@ export class FormStepComponent{
 
   env = environment;
   modal:boolean = false;
+  tyc:boolean = false;
+  tycDos:boolean = false;
   valorFinanciarCop:any = 0;
   editable:boolean = true;
   aprobado:boolean = false;
@@ -59,7 +61,8 @@ export class FormStepComponent{
   
     OtrosDatos: {  
       AutorizaConsultaCentrales: false,  
-      AutorizaMareigua: false,  
+      AutorizaMareigua: false,
+      AutorizaCondicionesPrivacidad: false,  
       ValorFinanciar: null,
       IdentificacionVendedor: null  
     }
@@ -117,19 +120,25 @@ export class FormStepComponent{
     
   }
 
-   checkTyc(this){
-    this.modal=false; 
-    this.contacto.OtrosDatos.AutorizaConsultaCentrales=true;
-    this.contacto.OtrosDatos.AutorizaMareigua=true;
+   checkTyc() {
+     this.modal = false;
+     
+    if (this.tyc) {
+    this.contacto.OtrosDatos.AutorizaConsultaCentrales = true;
+    this.contacto.OtrosDatos.AutorizaMareigua = true;
+    }
+    if (this.tycDos) {
+      this.contacto.OtrosDatos.AutorizaCondicionesPrivacidad = true;
+    }
    }
 
    reload()
     {
-    window.location.href="https://www.carroya.com/"; 
+    window.location.href="https://www.carroya.com/";
     }
 
     verDetalles(){
-      this.verDetalle = !this.verDetalle;    
+      this.verDetalle = !this.verDetalle;
     }
 
     /* Calculadora */
@@ -259,6 +268,7 @@ export interface OtrosDatos {
   AutorizaMareigua?: Boolean;  
   ValorFinanciar?: Number;
   IdentificacionVendedor?: Number;
+  AutorizaCondicionesPrivacidad?: Boolean;
 }
 
 export interface ContactoInterface{
